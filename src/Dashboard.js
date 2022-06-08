@@ -153,7 +153,12 @@ function Dashboard() {
           </div>
         </nav>
       </header>
-      <div className="container form-container">
+      <div
+        className="container form-container"
+        style={{
+          marginBottom: "50px",
+        }}
+      >
         <div className="free-form-container">
           <form onSubmit={freeTicketSubmit}>
             <div class="title">Free Ticket Form</div>
@@ -236,9 +241,11 @@ function Dashboard() {
                 id="freeFile"
               />
             </div>
-            <button type="submit" className="btn btn-tedx">
-              Get your free ticket
-            </button>
+            <center>
+              <button type="submit" className="btn btn-tedx">
+                Confirm Free Ticket
+              </button>
+            </center>
           </form>
         </div>
         {/* .. */}
@@ -262,7 +269,6 @@ function Dashboard() {
               />
             </div>
             <div className="mb-3">
-              {JSON.stringify(reflectForm)}
               <label htmlFor="reflect-email" className="form-label">
                 Email address
               </label>
@@ -323,9 +329,11 @@ function Dashboard() {
                 id="reflectFile"
               />
             </div>
-            <button className="btn btn-tedx" type="submit">
-              Confirm Payment
-            </button>
+            <center>
+              <button className="btn btn-tedx" type="submit">
+                Confirm Payment
+              </button>
+            </center>
           </form>
         </div>
       </div>
