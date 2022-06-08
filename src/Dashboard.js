@@ -6,11 +6,8 @@ import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 
 const axios = require("axios").default;
-const SERVER_URL = process.env.REACT_APP_SERVER_URL;
 
 function Dashboard() {
-  const [statusArr, setStatusArr] = useState([]);
-  const [isLoading, setLoading] = useState(false);
   const [freeForm, setFreeForm] = useState({
     name: "",
     email: "",
@@ -75,29 +72,11 @@ function Dashboard() {
       navigate("/login");
     }
   });
-  useEffect(() => {
-    axios
-      .get(`${SERVER_URL}/api/status`)
-      .then(function (response) {
-        setStatusArr(response.data);
-        setLoading(false);
-      })
-      .catch(function (error) {
-        // handle error
-        console.log(error);
-      })
-      .then(function () {
-        // always executed
-      });
-  }, []);
   const logout = (e) => {
     e.preventDefault();
     localStorage.removeItem("Authorization");
     navigate("/login");
   };
-  if (isLoading) {
-    return <div className="App">Loading...</div>;
-  }
 
   const freeTicketSubmit = async (e) => {
     e.preventDefault();
@@ -265,7 +244,7 @@ function Dashboard() {
           <form onSubmit={reflectTicketSubmit}>
             <div class="title">Payment Confirmation Form</div>
             <div className="mb-3">
-            {JSON.stringify(reflectForm)}
+              {JSON.stringify(reflectForm)}
               <label htmlFor="reflect-email" className="form-label">
                 Email address
               </label>
