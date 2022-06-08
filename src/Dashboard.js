@@ -17,7 +17,11 @@ function Dashboard() {
     phone: "",
     company: "Other",
   });
-  const [reflectForm, setReflectForm] = useState({});
+  const [reflectForm, setReflectForm] = useState({
+    email: "",
+    phone: "",
+    razorpay_payment_id: "",
+  });
   const [freeImage, setFreeImage] = useState("");
   const [reflectImage, setReflectImage] = useState("");
 
@@ -116,7 +120,7 @@ function Dashboard() {
     let formdata = new FormData();
     formdata.append("email", reflectForm.email);
     formdata.append("phone", `+91${reflectForm.phone}`);
-    formdata.append("razorpay_payment_id", reflectForm.paymentId);
+    formdata.append("razorpay_payment_id", reflectForm.razorpay_payment_id);
     formdata.append("avatar", reflectImage);
     toast.promise(
       axios.post(
@@ -161,7 +165,6 @@ function Dashboard() {
           <form onSubmit={freeTicketSubmit}>
             <div class="title">Free Ticket Form</div>
             <div className="mb-3">
-              {JSON.stringify(freeForm)}
               <label htmlFor="free-name" className="form-label">
                 Name
               </label>
@@ -250,13 +253,14 @@ function Dashboard() {
           <form onSubmit={reflectTicketSubmit}>
             <div class="title">Payment Confirmation Form</div>
             <div className="mb-3">
+            {JSON.stringify(reflectForm)}
               <label htmlFor="reflect-email" className="form-label">
                 Email address
               </label>
               <input
                 value={reflectForm.email}
                 onChange={onChangeReflectFormValue}
-                name="reflect-email"
+                name="email"
                 required={true}
                 type="email"
                 className="form-control"
@@ -272,7 +276,7 @@ function Dashboard() {
               <input
                 value={reflectForm.phone}
                 onChange={onChangeReflectFormValue}
-                name="reflect-phone"
+                name="phone"
                 required={true}
                 type="number"
                 className="form-control"
@@ -286,15 +290,15 @@ function Dashboard() {
                 Payment ID
               </label>
               <input
-                value={reflectForm.paymentId}
+                value={reflectForm.razorpay_payment_id}
                 onChange={onChangeReflectFormValue}
-                name="reflect-paymentid"
+                name="razorpay_payment_id"
                 required={true}
                 type="text"
                 className="form-control"
                 id="exampleInputEmail1"
                 aria-describedby="nameHelp"
-                placeholder="Enter your name"
+                placeholder="Enter your payment ID"
               />
             </div>
             <div className="mb-3">
