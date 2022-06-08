@@ -46,12 +46,24 @@ function Dashboard() {
   };
 
   const saveFreeImage = (e) => {
+    // Lower limit = 5 KB = 5120 Bytes
+    if (e.target.files[0].size < 5120)
+      return toast.error("Image size must be greater than 5KB");
+    // Upper limit = 10 MB = 10485760 Bytes
+    if (e.target.files[0].size > 10485760)
+      return toast.error("Image size must be less than 10MB");
     setTimeout(() => {
       setFreeImage(e.target.files[0]);
     }, 100);
   };
 
   const saveReflectImage = (e) => {
+    // Lower limit = 5 KB = 5120 Bytes
+    if (e.target.files[0].size < 5120)
+      return toast.error("Image size must be greater than 5KB");
+    // Upper limit = 10 MB = 10485760 Bytes
+    if (e.target.files[0].size > 10485760)
+      return toast.error("Image size must be less than 10MB");
     setTimeout(() => {
       setReflectImage(e.target.files[0]);
     }, 100);
