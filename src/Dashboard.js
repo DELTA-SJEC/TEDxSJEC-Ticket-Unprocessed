@@ -15,6 +15,7 @@ function Dashboard() {
     company: "Other",
   });
   const [reflectForm, setReflectForm] = useState({
+    name: "",
     email: "",
     phone: "",
     razorpay_payment_id: "",
@@ -109,6 +110,7 @@ function Dashboard() {
   const reflectTicketSubmit = async (e) => {
     e.preventDefault();
     let formdata = new FormData();
+    formdata.append("name", reflectForm.name);
     formdata.append("email", reflectForm.email);
     formdata.append("phone", `+91${reflectForm.phone}`);
     formdata.append("razorpay_payment_id", reflectForm.razorpay_payment_id);
@@ -206,7 +208,7 @@ function Dashboard() {
 
             <div className="mb-3">
               <label htmlFor="free-company" className="form-label">
-                Company
+                Org Name
               </label>
               <select
                 value={freeForm.company}
@@ -223,7 +225,7 @@ function Dashboard() {
             </div>
             <div className="mb-3">
               <label htmlFor="free-company-logo" className="form-label">
-                Company Logo
+                Avatar
               </label>
               <input
                 onChange={saveFreeImage}
@@ -243,6 +245,22 @@ function Dashboard() {
         <div className="reflect-form-container">
           <form onSubmit={reflectTicketSubmit}>
             <div class="title">Payment Confirmation Form</div>
+            <div className="mb-3">
+              <label htmlFor="free-name" className="form-label">
+                Name
+              </label>
+              <input
+                value={reflectForm.name}
+                onChange={onChangeReflectFormValue}
+                name="name"
+                required={true}
+                type="text"
+                className="form-control"
+                id="exampleInputEmail1"
+                aria-describedby="nameHelp"
+                placeholder="Enter your name"
+              />
+            </div>
             <div className="mb-3">
               {JSON.stringify(reflectForm)}
               <label htmlFor="reflect-email" className="form-label">
