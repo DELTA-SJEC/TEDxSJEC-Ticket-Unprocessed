@@ -3,7 +3,7 @@ import "./Dashboard.css";
 import { AUTH } from "./auth/Auth";
 import { useNavigate } from "react-router-dom";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
+import toast, { Toaster } from "react-hot-toast";
 
 const axios = require("axios").default;
 
@@ -336,6 +336,9 @@ function Dashboard() {
             </center>
           </form>
         </div>
+      </div>
+      <div>
+        <Toaster />
       </div>
     </div>
   );
